@@ -18,9 +18,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans bg-gray-background text-gray-900 text-sm">
-        <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
-            <a href="/"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a>
-            <div class="flex items-center mt-2 md:mt-0">
+        <header class="container max-w-custom mx-auto flex flex-col md:flex-row items-center justify-between px-8 py-4">
+            <a href="/"><img src="{{ asset('img/logo.png') }}" class="w-12" alt="{{ config('app.name') }}"></a>
+            <div class="flex items-center mt-2 md:mt-0 lg:pr-16">
                 @if (Route::has('login'))
                     <div class="px-6 py-4">
                         @auth
@@ -43,7 +43,7 @@
                     </div>
                 @endif
                 <a href="#">
-                    <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar" class="w-10 h-10 rounded-full">
+                    <img src="{{ Auth::user()->getAvatar() }}" alt="{{ Auth::user()->name }}'s Avatar" class="w-10 h-10 rounded-full">
                 </a>
             </div>
         </header>
