@@ -10,19 +10,19 @@ class DeKnotProvider extends AbstractProvider implements ProviderInterface
 {
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('http://gp.test/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase('https://deknot.io/oauth/authorize', $state);
     }
 
     protected function getTokenUrl()
     {
-        return 'http://gp.test/oauth/token';
+        return 'https://deknot.io/oauth/token';
     }
 
     protected function getUserByToken($token)
     {
         $response = Http::withToken($token)
             ->withHeaders(['Accept' => 'application/json'])
-            ->get('http://gp.test/api/user');
+            ->get('https://deknot.io/api/user');
 
         $user = $response->json();
 
