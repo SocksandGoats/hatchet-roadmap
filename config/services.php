@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain'   => env('MAILGUN_DOMAIN'),
+        'secret'   => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
@@ -25,9 +25,15 @@ return [
     ],
 
     'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
+        'key'    => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],
+
+    'deknot' => [
+        'client_id'     => 4,
+        'client_secret' => 'JH85YJOsbrD6QnlqZmpPBdz2qDBYSPVMJa8k8hBG',
+        'redirect'      => 'http://voting.test/deknot/auth/callback',
     ],
 
 ];

@@ -34,7 +34,7 @@
                         </a>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                    <a href="{{ route('login-with-deknot') }}" class="text-sm text-gray-700 underline">Login with Your DeKnot Account</a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
@@ -80,18 +80,12 @@
             @auth
                 <livewire:create-idea/>
             @else
-                <div class="my-6 text-center">
+                <div class="my-6 text-center px-6">
                     <a
-                        href="{{ route('login') }}"
-                        class="inline-block justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
+                        href="{{ route('login-with-deknot') }}"
+                        class="inline-block justify-center w-full h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-4 py-3"
                     >
-                        Login
-                    </a>
-                    <a
-                        href="{{ route('register') }}"
-                        class="inline-block justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3 mt-4"
-                    >
-                        Sign Up
+                        Login with Your DeKnot Account
                     </a>
                 </div>
             @endauth

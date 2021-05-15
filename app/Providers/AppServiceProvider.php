@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Oauth\DeKnotProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +28,15 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admin', function () {
             return auth()->check() && auth()->user()->isAdmin();
         });
+
+        $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
+        $socialite->extend(
+            'deknot',
+            function ($app) use ($socialite) {
+                $config = $app['config']['services.deknot'];
+
+                return $socialite->buildProvider(DeKnotProvider::class, $config);
+            }
+        );
     }
 }

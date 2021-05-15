@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at'
     ];
 
     /**
@@ -65,17 +67,33 @@ class User extends Authenticatable
             : ord(strtolower($firstCharacter)) - 96;
 
         return 'https://www.gravatar.com/avatar/'
-            .md5($this->email)
-            .'?s=200'
-            .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
-            .$integerToUse
-            .'.png';
+            . md5($this->email)
+            . '?s=200'
+            . '&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
+            . $integerToUse
+            . '.png';
     }
 
     public function isAdmin()
     {
         return in_array($this->email, [
             'phuclh93@gmail.com'
+        ]);
+    }
+
+    /**
+     * Create user from user's data of DeKnot.
+     *
+     * @param SocialiteUser $user
+     * @return mixed
+     */
+    public static function createUserFromDeKnot(SocialiteUser $user)
+    {
+        return User::firstOrCreate([
+            'email' => $user->getEmail()
+        ], [
+            'name'              => $user->getName(),
+            'email_verified_at' => $user->user['is_verified'] ? now() : null
         ]);
     }
 }
