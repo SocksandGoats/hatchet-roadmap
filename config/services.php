@@ -31,9 +31,9 @@ return [
     ],
 
     'deknot' => [
-        'client_id'     => 4,
-        'client_secret' => 'JH85YJOsbrD6QnlqZmpPBdz2qDBYSPVMJa8k8hBG',
-        'redirect'      => 'http://voting.test/deknot/auth/callback',
+        'client_id'     => env('DEKNOT_CLIENT_ID'),
+        'client_secret' => env('DEKNOT_CLIENT_SECRET'),
+        'redirect'      => env('DEKNOT_CLIENT_REDIRECT'),
     ],
 
 ];
