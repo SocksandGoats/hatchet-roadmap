@@ -79,9 +79,9 @@
                 <div class="flex items-center space-x-3 mt-4">
                     <a
                         href="{{ route('login-with-deknot') }}"
-                        class="w-full h-11 text-sm text-center bg-blue text-white font-semibold rounded-xl hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
+                        class="w-full h-11 text-sm text-center bg-blue text-white font-semibold rounded-xl hover:bg-blue-hover transition duration-150 ease-in px-4 py-3"
                     >
-                        Login with Your DeKnot Account
+                        Login with DeKnot Account
                     </a>
                 </div>
             </div>
