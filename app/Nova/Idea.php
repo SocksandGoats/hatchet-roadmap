@@ -3,11 +3,14 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Line;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Slug;
+use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -48,12 +51,18 @@ class Idea extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
+            Stack::make('Title', 'title', [
+                Line::make('Title')->asHeading(),
+                Url::make('Slug', 'slug', fn($value) => route('idea.show', $value))->alwaysClickable()
+            ])->sortable()->onlyOnIndex(),
+
             Text::make('Title')
                 ->rules('required', 'max:254')
-                ->sortable(),
+                ->hideFromIndex(),
 
             Slug::make('Slug')
-                ->from('Title'),
+                ->from('Title')
+                ->hideFromIndex(),
 
             Trix::make('Description')
                 ->withFiles('public')
