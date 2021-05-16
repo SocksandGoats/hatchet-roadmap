@@ -19,7 +19,7 @@ class IdeasIndex extends Component
     public $search;
 
     protected $queryString = [
-        'status',
+        'status' => ['except' => 'All'],
         'category',
         'filter',
         'search',
