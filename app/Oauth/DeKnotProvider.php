@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\ProviderInterface;
 use Laravel\Socialite\Two\User;
@@ -10,19 +11,19 @@ class DeKnotProvider extends AbstractProvider implements ProviderInterface
 {
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://deknot.io/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(Str::finish(config('voting.deknot_passport_server'), '/') . 'oauth/authorize', $state);
     }
 
     protected function getTokenUrl()
     {
-        return 'https://deknot.io/oauth/token';
+        return Str::finish(config('voting.deknot_passport_server'), '/') . 'oauth/token';
     }
 
     protected function getUserByToken($token)
     {
         $response = Http::withToken($token)
             ->withHeaders(['Accept' => 'application/json'])
-            ->get('https://deknot.io/api/user');
+            ->get(Str::finish(config('voting.deknot_passport_server'), '/') . 'api/user');
 
         $user = $response->json();
 
