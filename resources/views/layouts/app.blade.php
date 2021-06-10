@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     <title>{{ config('app.name') }}</title>
 
     <!-- Fonts -->
@@ -24,16 +29,19 @@
         @if (Route::has('login'))
             <div class="px-6 py-4">
                 @auth
+                    <div class="flex items-center space-x-4">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                                <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                            {{ __('Log out') }}
-                        </a>
-                    </form>
-                @else
+                                    {{ __('Log out') }}
+                                </a>
+                            </form>
+                        <livewire:comment-notifications />
+                    </div>
+                        @else
                     <a href="{{ route('login-with-deknot') }}" class="text-sm text-gray-700 underline">Login with Your DeKnot Account</a>
 
                     @if (Route::has('register'))
@@ -105,6 +113,14 @@
     <x-notification-success
         :redirect="true"
         message-to-display="{{ (session('success_message')) }}"
+    />
+@endif
+
+@if (session('error_message'))
+    <x-notification-success
+        type="error"
+        :redirect="true"
+        message-to-display="{{ (session('error_message')) }}"
     />
 @endif
 
