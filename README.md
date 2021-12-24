@@ -34,6 +34,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 ```
 
+Voting app will make a request to that route to get the user information of you Saas app.
+
 5. Customize (Optional)
 ```
 App\Oauth\DeKnotProvider.php
