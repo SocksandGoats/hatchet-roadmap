@@ -26,7 +26,15 @@ DEKNOT_CLIENT_SECRET= // Secret in oauth_clients table of your Oauth Server appl
 DEKNOT_CLIENT_REDIRECT=http://voting.test/deknot/auth/callback // Callback URL of the voting application.
 DEKNOT_PASSPORT_SERVER=http://gp.test // Oauth Server application URL
 ```
-4. Customize (Optional)
+4. Make sure your `api.php` is using Passport (`auth:api`):
+
+```
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+```
+
+5. Customize (Optional)
 ```
 App\Oauth\DeKnotProvider.php
 App\Http\Controllers\Auth\LoginWithDeKnotController.php
