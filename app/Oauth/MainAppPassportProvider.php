@@ -36,7 +36,7 @@ class MainAppPassportProvider extends AbstractProvider implements ProviderInterf
     {
         return (new User)->setRaw($user)->map([
             'id'    => $user['id'],
-            'name'  => Arr::get($user, 'first_name'),
+            'name'  => Arr::get($user, 'name'),
             'email' => Arr::get($user, 'email')
         ]);
     }
