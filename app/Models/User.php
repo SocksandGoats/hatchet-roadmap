@@ -91,7 +91,8 @@ class User extends Authenticatable
             'email' => $user->getEmail()
         ], [
             'name'              => $user->getName(),
-            'email_verified_at' => $user->user['is_verified'] ? now() : null
+            'email_verified_at' => $user->user['is_verified'] ? now() : null,
+            'avatar'            => $user->getAvatar(),
         ]);
     }
 }
