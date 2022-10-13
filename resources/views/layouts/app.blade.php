@@ -24,24 +24,28 @@
 </head>
 <body class="font-sans bg-gray-background text-gray-900 text-sm">
 <header class="container max-w-custom mx-auto flex flex-col md:flex-row items-center justify-between px-8 py-4">
-    <a href="/"><img src="{{ asset('img/logo.png') }}" class="w-12" alt="{{ config('app.name') }}"></a>
+    @if(config('voting.main_app_logo_img_url'))
+        <a href="/"><img src="{{ asset(config('voting.main_app_logo_img_url')) }}" class="w-12" alt="{{ config('app.name') }}"></a>
+    @else
+        <h1 class="text-2xl">Roadmap</h1>
+    @endif
     <div class="flex items-center mt-2 md:mt-0 lg:pr-16">
         @if (Route::has('login'))
             <div class="px-6 py-4">
                 @auth
                     <div class="flex items-center space-x-4">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-                                <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                    {{ __('Log out') }}
-                                </a>
-                            </form>
-                        <livewire:comment-notifications />
+                                {{ __('Log out') }}
+                            </a>
+                        </form>
+                        <livewire:comment-notifications/>
                     </div>
-                        @else
+                @else
                     <a href="{{ route('login-with-main-app') }}" class="text-sm text-gray-700 underline">Login with Your {{ config('voting.main_app_name') }} Account</a>
 
                     @if (Route::has('register'))
@@ -65,8 +69,8 @@
 <main class="container mx-auto max-w-custom flex flex-col md:flex-row">
     <div class="w-70 mx-auto md:mx-0 md:mr-5">
         <div
-            class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16"
-            style="
+                class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16"
+                style="
                           border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             border-image-slice: 1;
                             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
@@ -90,8 +94,8 @@
             @else
                 <div class="my-6 text-center px-6">
                     <a
-                        href="{{ route('login-with-main-app') }}"
-                        class="inline-block justify-center w-full h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-4 py-3"
+                            href="{{ route('login-with-main-app') }}"
+                            class="inline-block justify-center w-full h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-4 py-3"
                     >
                         Login with Your {{ config('voting.main_app_name') }} Account
                     </a>
@@ -111,16 +115,16 @@
 
 @if (session('success_message'))
     <x-notification-success
-        :redirect="true"
-        message-to-display="{{ (session('success_message')) }}"
+            :redirect="true"
+            message-to-display="{{ (session('success_message')) }}"
     />
 @endif
 
 @if (session('error_message'))
     <x-notification-success
-        type="error"
-        :redirect="true"
-        message-to-display="{{ (session('error_message')) }}"
+            type="error"
+            :redirect="true"
+            message-to-display="{{ (session('error_message')) }}"
     />
 @endif
 
