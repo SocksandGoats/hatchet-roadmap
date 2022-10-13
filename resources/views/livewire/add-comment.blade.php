@@ -88,10 +88,10 @@
                 <p class="font-normal">Please login or create an account to post a comment.</p>
                 <div class="flex items-center space-x-3 mt-4">
                     <a
-                        href="{{ route('login-with-deknot') }}"
+                        href="{{ route('login-with-main-app') }}"
                         class="w-full h-11 text-sm text-center bg-blue text-white font-semibold rounded-xl hover:bg-blue-hover transition duration-150 ease-in px-4 py-3"
                     >
-                        Login with DeKnot Account
+                        Login with {{ config('voting.main_app_name') }} Account
                     </a>
                 </div>
             </div>

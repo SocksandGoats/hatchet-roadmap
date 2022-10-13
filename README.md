@@ -1,6 +1,6 @@
 ## Voting App
 
-**Demo:** https://voting.deknot.io
+**Demo:** https://voting.main-app.io
 
 ## Installation
 
@@ -16,15 +16,19 @@
 1. Visit `localhost:8000` in your browser
 1. Access Nova via `/admin`
 
-## Setup Login With DeKnot
+## Setup Login With Main App
 1. Install Laravel Passport in Oauth Server application: https://laravel.com/docs/8.x/passport
 2. Create Passport Client via: `php artisan passport:client` (Read more about Requesting Tokens process: https://laravel.com/docs/8.x/passport#requesting-tokens)
 3. Add these env variables into your voting app .env
 ```
-DEKNOT_CLIENT_ID=1 // Client ID in oauth_clients table of your Oauth Server application.
-DEKNOT_CLIENT_SECRET= // Secret in oauth_clients table of your Oauth Server application.
-DEKNOT_CLIENT_REDIRECT=http://voting.test/deknot/auth/callback // Callback URL of the voting application.
-DEKNOT_PASSPORT_SERVER=http://gp.test // Oauth Server application URL
+MAIN_APP_NAME="Main App"
+MAIN_APP_CLIENT_ID= // Client ID in oauth_clients table of your Oauth Server application.
+MAIN_APP_CLIENT_SECRET= // Secret in oauth_clients table of your Oauth Server application.
+MAIN_APP_CLIENT_REDIRECT= http://voting.test/main-app/auth/callback // Callback URL of the voting application.
+MAIN_APP_PASSPORT_SERVER=https://passport.test // Oauth Server application URL
+MAIN_APP_OAUTH_USER_ENDPOINT=api/user // User api endpoint in Oauth Server application.
+MAIN_APP_OAUTH_TOKEN_ENDPOINT=oauth/token // Token api endpoint in Oauth Server application.
+MAIN_APP_OAUTH_AUTHORIZE_ENDPOINT=oauth/authorize // Oauth authorize endpoint in Oauth Server application.
 ```
 4. Make sure your `api.php` is using Passport (`auth:api`):
 
@@ -38,6 +42,6 @@ Voting app will make a request to that route to get the user information of you 
 
 5. Customize (Optional)
 ```
-App\Oauth\DeKnotProvider.php
-App\Http\Controllers\Auth\LoginWithDeKnotController.php
+App\Oauth\MainAppPassportProvider.php
+App\Http\Controllers\Auth\LoginWithMainAppController.php
 ```

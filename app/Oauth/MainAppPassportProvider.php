@@ -7,23 +7,23 @@ use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\ProviderInterface;
 use Laravel\Socialite\Two\User;
 
-class DeKnotProvider extends AbstractProvider implements ProviderInterface
+class MainAppPassportProvider extends AbstractProvider implements ProviderInterface
 {
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase(Str::finish(config('voting.deknot_passport_server'), '/') . 'oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(Str::finish(config('voting.main_app_passport_server'), '/') . config('voting.main_app_oauth_authorize_endpoint'), $state);
     }
 
     protected function getTokenUrl()
     {
-        return Str::finish(config('voting.deknot_passport_server'), '/') . 'oauth/token';
+        return Str::finish(config('voting.main_app_passport_server'), '/') . config('voting.main_app_oauth_token_endpoint');
     }
 
     protected function getUserByToken($token)
     {
         $response = Http::withToken($token)
             ->withHeaders(['Accept' => 'application/json'])
-            ->get(Str::finish(config('voting.deknot_passport_server'), '/') . 'api/user');
+            ->get(Str::finish(config('voting.main_app_passport_server'), '/') . config('voting.main_app_oauth_user_endpoint'));
 
         $user = $response->json();
 

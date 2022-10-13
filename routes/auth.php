@@ -4,18 +4,18 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\LoginWithDeKnotController;
+use App\Http\Controllers\Auth\LoginWithMainAppController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login-with-deknot', [LoginWithDeKnotController::class, 'redirect'])
+Route::get('/login-with-main-app', [LoginWithMainAppController::class, 'redirect'])
     ->middleware('guest')
-    ->name('login-with-deknot');
+    ->name('login-with-main-app');
 
-Route::get('/deknot/auth/callback', [LoginWithDeKnotController::class, 'callback'])->middleware('guest');
+Route::get('/main-app/auth/callback', [LoginWithMainAppController::class, 'callback'])->middleware('guest');
 
 //Route::get('/register', [RegisteredUserController::class, 'create'])
 //    ->middleware('guest')

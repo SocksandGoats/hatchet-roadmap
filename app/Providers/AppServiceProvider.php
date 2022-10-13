@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Oauth\DeKnotProvider;
+use App\Oauth\MainAppPassportProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,11 +31,11 @@ class AppServiceProvider extends ServiceProvider
 
         $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
         $socialite->extend(
-            'deknot',
+            'main_app',
             function ($app) use ($socialite) {
-                $config = $app['config']['services.deknot'];
+                $config = $app['config']['services.main_app'];
 
-                return $socialite->buildProvider(DeKnotProvider::class, $config);
+                return $socialite->buildProvider(MainAppPassportProvider::class, $config);
             }
         );
     }

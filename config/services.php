@@ -30,10 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'deknot' => [
-        'client_id'     => env('DEKNOT_CLIENT_ID'),
-        'client_secret' => env('DEKNOT_CLIENT_SECRET'),
-        'redirect'      => env('DEKNOT_CLIENT_REDIRECT'),
+    'main_app' => [
+        'client_id'     => env('MAIN_APP_CLIENT_ID'),
+        'client_secret' => env('MAIN_APP_CLIENT_SECRET'),
+        'redirect'      => env('MAIN_APP_CLIENT_REDIRECT'),
     ],
-
 ];

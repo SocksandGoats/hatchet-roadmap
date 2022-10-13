@@ -6,18 +6,18 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
-class LoginWithDeKnotController extends Controller
+class LoginWithMainAppController extends Controller
 {
     public function redirect()
     {
-        return Socialite::driver('deknot')->redirect();
+        return Socialite::driver('main_app')->redirect();
     }
 
     public function callback()
     {
-        $user = Socialite::driver('deknot')->user();
+        $user = Socialite::driver('main_app')->user();
 
-        Auth::login(User::createUserFromDeKnot($user), true);
+        Auth::login(User::createUserFromMainApp($user), true);
 
         return redirect()->to(RouteServiceProvider::HOME);
     }

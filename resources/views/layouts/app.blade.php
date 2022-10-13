@@ -42,7 +42,7 @@
                         <livewire:comment-notifications />
                     </div>
                         @else
-                    <a href="{{ route('login-with-deknot') }}" class="text-sm text-gray-700 underline">Login with Your DeKnot Account</a>
+                    <a href="{{ route('login-with-main-app') }}" class="text-sm text-gray-700 underline">Login with Your {{ config('voting.main_app_name') }} Account</a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
@@ -90,10 +90,10 @@
             @else
                 <div class="my-6 text-center px-6">
                     <a
-                        href="{{ route('login-with-deknot') }}"
+                        href="{{ route('login-with-main-app') }}"
                         class="inline-block justify-center w-full h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-4 py-3"
                     >
-                        Login with Your DeKnot Account
+                        Login with Your {{ config('voting.main_app_name') }} Account
                     </a>
                 </div>
             @endauth

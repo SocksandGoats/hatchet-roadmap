@@ -76,18 +76,16 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return in_array($this->email, [
-            'phuclh93@gmail.com'
-        ]);
+        return in_array($this->email, config('app.admin_emails'));
     }
 
     /**
-     * Create user from user's data of DeKnot.
+     * Create user from user's data of Main App.
      *
      * @param SocialiteUser $user
      * @return mixed
      */
-    public static function createUserFromDeKnot(SocialiteUser $user)
+    public static function createUserFromMainApp(SocialiteUser $user)
     {
         return User::firstOrCreate([
             'email' => $user->getEmail()
