@@ -30,7 +30,7 @@
     >
         <form wire:submit.prevent="setStatus" action="#" class="space-y-4 px-4 py-6">
             <div class="space-y-2">
-                @foreach(\App\Models\Status::all() as $status)
+                @foreach(\App\Models\Status::all()->sortBy('sort_order') as $status)
                 <div>
                     <label class="inline-flex items-center">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 border-none" name="status" value="{{ $status->id }}" checked="{{ $this->idea->status_id ===
