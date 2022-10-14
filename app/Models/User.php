@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
         'email_verified_at'
     ];
 
@@ -60,6 +61,10 @@ class User extends Authenticatable
 
     public function getAvatar()
     {
+        if ($this->avatar) {
+            return $this->avatar;
+        }
+
         $firstCharacter = $this->email[0];
 
         $integerToUse = is_numeric($firstCharacter)
@@ -85,14 +90,17 @@ class User extends Authenticatable
      * @param SocialiteUser $user
      * @return mixed
      */
-    public static function createUserFromMainApp(SocialiteUser $user)
+    public static function createUserFromMainApp(SocialiteUser $socialiteUser)
     {
-        return User::firstOrCreate([
-            'email' => $user->getEmail()
+        $user = User::firstOrCreate([
+            'email' => $socialiteUser->getEmail()
         ], [
-            'name'              => $user->getName(),
-            'email_verified_at' => $user->user['is_verified'] ? now() : null,
-            'avatar'            => $user->getAvatar(),
+            'name'              => $socialiteUser->getName(),
+            'email_verified_at' => $socialiteUser->user['is_verified'] ? now() : null,
+            'avatar'            => $socialiteUser['avatar'] ?? $socialiteUser->getAvatar(),
         ]);
+        $user->avatar = $socialiteUser['avatar'];
+        $user->save();
+        return $user;
     }
 }
