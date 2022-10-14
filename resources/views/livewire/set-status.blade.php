@@ -33,7 +33,9 @@
                 @foreach(\App\Models\Status::all() as $status)
                 <div>
                     <label class="inline-flex items-center">
-                        <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 border-none" name="status" value="{{ $status->id }}" checked>
+                        <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 border-none" name="status" value="{{ $status->id }}" checked="{{ $this->idea->status_id ===
+                        $status->id
+                        }}">
                         <span class="ml-2">{{ $status->name }}</span>
                     </label>
                 </div>

@@ -18,7 +18,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <livewire:styles/>
-
+    <script src="https://kit.fontawesome.com/d81fb76c88.js" crossorigin="anonymous"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>

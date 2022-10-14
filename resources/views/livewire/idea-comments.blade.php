@@ -5,9 +5,9 @@
 
             @foreach ($comments as $comment)
                 <livewire:idea-comment
-                    :key="$comment->id"
-                    :comment="$comment"
-                    :ideaUserId="$idea->user->id"
+                        :key="$comment->id"
+                        :comment="$comment"
+                        :ideaUserId="$idea->user->id"
                 />
             @endforeach
         </div>
@@ -16,9 +16,11 @@
             {{ $comments->onEachSide(1)->links() }}
         </div>
     @else
-        <div class="mx-auto w-70 mt-12">
-            <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto mix-blend-luminosity">
-            <div class="text-gray-400 text-center font-bold mt-6">No comments yet...</div>
+        <div class="mx-auto w-70 mt-12 text-center">
+            <div class="flex space-x-2 justify-center text-center">
+                <i class="text-gray-400 fa-regular fa-thought-bubble mix-blend-luminosity text-2xl" alt="No Ideas"></i>
+                <p class="text-gray-400 text-center font-bold">No comments yet...</p>
+            </div>
         </div>
     @endif
 </div>
