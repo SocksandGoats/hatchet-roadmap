@@ -16,7 +16,7 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
 
     'admin_emails' => [
-        explode(',', env('ADMIN_EMAILS', 'admin@omniadigital.io'))
+        ...explode(',', env('ADMIN_EMAILS', 'admin@omniadigital.io'))
     ],
 
     /*
