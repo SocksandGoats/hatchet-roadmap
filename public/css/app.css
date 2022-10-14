@@ -962,6 +962,15 @@ select {
 .ml-auto {
 	margin-left: auto;
 }
+.ml-8 {
+	margin-left: 2rem;
+}
+.mb-8 {
+	margin-bottom: 2rem;
+}
+.mr-6 {
+	margin-right: 1.5rem;
+}
 .block {
 	display: block;
 }
@@ -1027,6 +1036,9 @@ select {
 }
 .min-h-screen {
 	min-height: 100vh;
+}
+.min-h-full {
+	min-height: 100%;
 }
 .w-5 {
 	width: 1.25rem;
@@ -1511,6 +1523,9 @@ select {
 .text-center {
 	text-align: center;
 }
+.text-justify {
+	text-align: justify;
+}
 .align-bottom {
 	vertical-align: bottom;
 }
@@ -1583,6 +1598,9 @@ select {
 }
 .tracking-widest {
 	letter-spacing: 0.1em;
+}
+.tracking-wide {
+	letter-spacing: 0.025em;
 }
 .text-gray-500 {
 	--tw-text-opacity: 1;
