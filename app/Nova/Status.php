@@ -49,6 +49,7 @@ class Status extends Resource
 
             Text::make('Classes')
                 ->rules('required', 'max:254')
+                ->nullable()
                 ->hideFromIndex(),
         ];
     }
