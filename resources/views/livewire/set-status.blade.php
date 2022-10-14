@@ -30,36 +30,14 @@
     >
         <form wire:submit.prevent="setStatus" action="#" class="space-y-4 px-4 py-6">
             <div class="space-y-2">
+                @foreach(\App\Models\Status::all() as $status)
                 <div>
                     <label class="inline-flex items-center">
-                        <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 border-none" name="status" value="1" checked>
-                        <span class="ml-2">Open</span>
+                        <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 border-none" name="status" value="{{ $status->id }}" checked>
+                        <span class="ml-2">{{ $status->name }}</span>
                     </label>
                 </div>
-                <div>
-                    <label class="inline-flex items-center">
-                        <input wire:model="status" type="radio" class="bg-gray-200 text-purple border-none" name="status" value="2">
-                        <span class="ml-2">Considering</span>
-                    </label>
-                </div>
-                <div>
-                    <label class="inline-flex items-center">
-                        <input wire:model="status" type="radio" class="bg-gray-200 text-yellow border-none" name="status" value="3">
-                        <span class="ml-2">In Progress</span>
-                    </label>
-                </div>
-                <div>
-                    <label class="inline-flex items-center">
-                        <input wire:model="status" type="radio" class="bg-gray-200 text-green border-none" name="status" value="4">
-                        <span class="ml-2">Implemented</span>
-                    </label>
-                </div>
-                <div>
-                    <label class="inline-flex items-center">
-                        <input wire:model="status" type="radio" class="bg-gray-200 text-red border-none" name="status" value="5">
-                        <span class="ml-2">Closed</span>
-                    </label>
-                </div>
+                @endforeach
             </div>
 
             <div>
