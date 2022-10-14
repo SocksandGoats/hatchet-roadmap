@@ -9,27 +9,27 @@ use Livewire\Component;
 
 class StatusFilters extends Component
 {
-    public $status;
+    public $currentStatus;
     public $statusCount;
 
     public function mount()
     {
-        $this->statusCount = Status::getCount();
-        $this->status = request()->status ?? 'All';
+        $this->statusCount   = Status::getCount();
+        $this->currentStatus = request()->status ?? 'All';
 
         if (Route::currentRouteName() === 'idea.show') {
-            $this->status = null;
+            $this->currentStatus = null;
         }
     }
 
-    public function setStatus($newStatus)
+    public function setCurrentStatus($newStatus)
     {
-        $this->status = $newStatus;
-        $this->emit('queryStringUpdatedStatus', $this->status);
+        $this->currentStatus = $newStatus;
+        $this->emit('queryStringUpdatedStatus', $this->currentStatus);
 
         if ($this->getPreviousRouteName() === 'idea.show') {
             return redirect()->route('idea.index', [
-                    'status' => $this->status,
+                'status' => $this->currentStatus,
                 ]);
         }
     }
