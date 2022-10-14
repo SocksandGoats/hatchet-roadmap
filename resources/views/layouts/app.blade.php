@@ -23,9 +23,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="font-sans bg-gray-background text-gray-900 text-sm">
-<header class="container max-w-custom mx-auto flex flex-col md:flex-row items-center justify-between px-8 py-4">
-    @if(config('voting.main_app_logo_img_url'))
-        <a href="/"><img src="{{ asset(config('voting.main_app_logo_img_url')) }}" class="w-12" alt="{{ config('app.name') }}"></a>
+<header class="container max-w-custom mx-auto flex flex-col md:flex-row items-center justify-between pr-8 py-4">
+    @if(config('voting.main_app_logo_url'))
+        <a href="{{ config('voting.main_app_url') }}"><img src="{{ asset(config('voting.main_app_logo_url')) }}" class="{{ config('voting.main_app_logo_height') }}" alt="{{
+        config('app.name')
+        }}"></a>
     @else
         <h1 class="text-2xl">Roadmap</h1>
     @endif
@@ -66,7 +68,7 @@
     </div>
 </header>
 
-<main class="container mx-auto max-w-custom flex flex-col md:flex-row">
+<main class="container mx-auto max-w-custom flex  md:flex-row">
     <div class="w-70 mx-auto md:mx-0 md:mr-5">
         <div
                 class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16"
